@@ -1,0 +1,8 @@
+version: '3'
+services:
+  mqtt_client:
+    image: distributed_system_client_1
+    deploy:
+      replicas: 12
+    environment:
+      - CLIENT_ID=Client_
