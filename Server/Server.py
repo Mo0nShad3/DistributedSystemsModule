@@ -59,7 +59,8 @@ def on_message(client, userdata, message): # Callback for when a published messa
         print("Error: Invalid message recieved")
 
 def callBill(Client_ID, Topic, Timestamp, powerConsumed):
-    bill_Total = (received_message['Power Consumed']*24)
+    bill_Total = received_message['Power Consumed']*(60*60/45)*24 #Power consumed in 24 hours in W/h
+                                                    #45sec intervals
 
 def errorMessage(Client_ID, Topic, Timestamp, Error):
     errorMessage = ("Error with system")
