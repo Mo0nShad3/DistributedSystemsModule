@@ -163,4 +163,8 @@ class mainWindow(customtkinter.CTk):
         print("Text output")
 
 mainWindow = mainWindow()
+<<<<<<< HEAD
 mainWindow.mainloop()
+=======
+mainWindow.mainloop()
+>>>>>>> 09ec160 (Finalised the code.)
