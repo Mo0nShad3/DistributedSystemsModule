@@ -12,6 +12,7 @@ import threading
 # List
 
 user = "Client 11"
+#
 
 # This is set based on messages received from the  client
 status = True
