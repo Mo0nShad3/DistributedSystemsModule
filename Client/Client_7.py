@@ -11,7 +11,7 @@ import threading
 
 # List
 
-user = "Client 1"
+user = "Client 7"
 
 # This is set based on messages received from the  client
 status = True
@@ -26,9 +26,11 @@ current_time = date_and_time.strftime("%H:%M")
 date = date_and_time.strftime("%d/%m/%Y")
 
 # MQTT broker configuration 
-mqtt_Broker = 'mqtt.em-solutions.co.uk' # Public IP of broker to connect to.
-mqtt_Port = 1885 # Non-standard port for security.
-client_ID = "Client_" + "1"  #str(uuid.uuid4()) # Set a unique client ID ~ 
+mqtt_Broker = 'localhost' # Public IP of broker to connect to.
+mqtt_Port = 8883 # Non-standard port for security.
+client_ID = "Client_" + "7"  #str(uuid.uuid4()) # Set a unique client ID ~ 
+mqtt_Username = "Admin"
+mqtt_Password = "Server14!"
 
 # MQTT message topic configuration
 mqtt_Topic = f'Clients/{client_ID}' # Set the mqtt topic to send its' data to 
@@ -54,6 +56,7 @@ def update_status(status):
 # Function to handle received messages
 def on_message(client, userdata, message):
     received_message = json.loads(message.payload.decode()) # Decode any message received
+    
 
     if (message.topic == mqtt_ReturnTopic): # Check if the message has been recieved from the same clients ID
         bill_Total = received_message['Bill Total']
@@ -235,6 +238,7 @@ class mainWindow(customtkinter.CTk):
 def mqtt_thread():
     # Set the on_message callback
     client = mqtt_client.Client()
+    client.username_pw_set(username=mqtt_Username, password=mqtt_Password)
     client.on_message = on_message
 
     # Connect to the broker
